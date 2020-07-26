@@ -39,7 +39,7 @@ Apply the LitmusChaos Operator manifest:
 kubectl apply -f https://litmuschaos.github.io/litmus/litmus-operator-v1.6.0.yaml
 ```
 
-The above command install all the CRDs, required service account configuration, and chaos-operator. Before you start running a chaos experiment, verify if Litmus is installed correctly.
+The above command installs all the CRDs, required service account configuration, and chaos-operator. Before you start running a chaos experiment, verify if Litmus is installed correctly.
 
 **Verify your installation**
 
@@ -72,8 +72,8 @@ Expected output:
 >
 > chaosresults.litmuschaos.io             2019-10-02T08:45:26Z
 
-- Verify if the chaos api resources are successfully created in the desired (application) namespace.
-
+- Verify if the chaos API resources are successfully created in the desired (application) namespace.
+ 
   *Note*: Sometimes, it can take a few seconds for the resources to be available post the CRD installation
 
 ```
@@ -91,12 +91,11 @@ Expected output:
 
 
 **NOTE**:
-
-- In this guide, we shall describe the steps to inject container-kill chaos on an nginx application already deployed in the
-nginx namespace. It is a mandatory requirement to ensure that the chaos custom resources (chaosexperiment and chaosengine)
-and the experiment specific serviceaccount are created in the same namespace (typically, the same as the namespace of the
-application under test (AUT), in this case nginx). This is done to ensure that the developers/users of the experiment isolate
-the chaos to their respective work-namespaces in shared environments.
+- In this guide, we shall describe the steps to inject container-kill chaos on an nginx application already deployed in the 
+nginx namespace. It is a mandatory requirement to ensure that the chaos custom resources (chaosexperiment and chaosengine) 
+and the experiment specific service accounts are created in the same namespace (typically, the same as the namespace of the 
+application under test (AUT), in this case nginx). This is done to ensure that the developers/users of the experiment isolate 
+the chaos to their respective work-namespaces in shared environments. 
 
 - In all subsequent steps, please follow these instructions by replacing the nginx namespace and labels with that of your
 application.
@@ -126,14 +125,14 @@ kubectl get chaosexperiments -n nginx
 
 ### Setup Service Account
 
-A service account should be created to allow chaosengine to run experiments in your application namespace. Copy the following
-into a `rbac.yaml` manifest and run `kubectl apply -f rbac.yaml` to create one such account on the nginx namespace. This serviceaccount
+A service account should be created to allow chaosengine to run experiments in your application namespace. Copy the following 
+into a `rbac.yaml` manifest and run `kubectl apply -f rbac.yaml` to create one such account on the nginx namespace. This service account 
 has just enough permissions needed to run the container-kill chaos experiment.
 
 **NOTE**:
 
-- For rbac samples corresponding to other experiments such as, say, pod-delete, please refer the respective experiment folder in
-the [chaos-charts](https://github.com/litmuschaos/chaos-charts/tree/master/charts/generic/pod-delete) repository.
+- For RBAC samples corresponding to other experiments such as, say, pod-delete, please refer the respective experiment folder in 
+the [chaos-charts](https://github.com/litmuschaos/chaos-charts/tree/master/charts/generic/pod-delete) repository.  
 
 
 [embedmd]:# (https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/container-kill/rbac_nginx_getstarted.yaml yaml)
